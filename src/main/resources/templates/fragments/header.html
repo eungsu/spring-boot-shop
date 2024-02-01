@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header">
+	<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbar"
+			aria-controls="navbar"
+			aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a class="navbar-brand" href="/">Shop</a>
+		
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="/item">상품</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin">장바구니</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin">구매이력</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin">관리자</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin">로그인</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin">로그아웃</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/admin">회원가입</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0" th:action="@{/}" method="get">
+				<input name="keyword" class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="검색">
+				<button type="submit" class="btn btn-light my-2 my-sm-0">검색</button>
+			</form>
+		</div>
+	</nav>
+</div>
+</html>
