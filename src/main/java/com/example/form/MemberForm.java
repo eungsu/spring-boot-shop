@@ -42,9 +42,9 @@ public class MemberForm {
 		member.setZipcode(zipcode);
 		member.setAddress1(address1);
 		member.setAddress2(address2);
-		member.setRole(Role.ROLE_USER);
+		member.setRole(Role.USER);
 		member.setCreatedDate(LocalDateTime.now());
-		
+				
 		return member;
 	}
 }

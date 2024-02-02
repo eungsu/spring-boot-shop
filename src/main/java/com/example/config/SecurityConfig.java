@@ -10,6 +10,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.example.constant.Role;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -26,7 +28,7 @@ public class SecurityConfig {
 					.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
 					.requestMatchers("/h2-console/**").permitAll()
 					.requestMatchers("/", "/members/**", "/items/**", "/images/**").permitAll()
-					.requestMatchers("/amdin/**").hasAnyRole("ADMIN")
+					.requestMatchers("/amdin/**").hasAnyRole(Role.ADMIN.toString())
 					.anyRequest().authenticated())
 			
 			.formLogin((formLogin) -> formLogin
