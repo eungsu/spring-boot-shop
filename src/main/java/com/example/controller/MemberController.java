@@ -26,13 +26,13 @@ public class MemberController {
 	@GetMapping(path = "/new")
 	public String registerform(Model model) {
 		model.addAttribute("memberForm", new MemberForm());
-		return "member/form";
+		return "/member/form";
 	}
 	
 	@PostMapping(path = "/new")
 	public String submit(@Valid MemberForm memberForm, BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return "member/form";
+			return "/member/form";
 		}
 		
 		try {
@@ -40,13 +40,19 @@ public class MemberController {
 			memberService.saveMember(member);
 		} catch (IllegalStateException e) {
 			bindingResult.rejectValue("email", null, e.getMessage());
-			return "member/form";
+			return "/member/form";
 		}
 		return "redirect:/";
 	}
 
 	@GetMapping(path = "/login")
 	public String loginform() {
-		return "member/loginform";
+		return "/member/loginform";
+	}
+	
+	@GetMapping(path = "/login/error")
+	public String loginError(Model model) {
+		model.addAttribute("loginErrorMessage", "이메일 또는 비밀번호를 올바르지 않습니다.");
+		return "/member/loginform";
 	}
 }

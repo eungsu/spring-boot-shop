@@ -12,6 +12,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.example.constant.Role;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -28,7 +30,7 @@ public class SecurityConfig {
 					.requestMatchers("/css/**", "/js/**", "/img/**").permitAll()
 					.requestMatchers("/h2-console/**").permitAll()
 					.requestMatchers("/", "/members/**", "/items/**", "/images/**").permitAll()
-					.requestMatchers("/amdin/**").hasAnyRole(Role.ADMIN.toString())
+					.requestMatchers("/admin/**").hasAnyRole(Role.ADMIN.toString())
 					.anyRequest().authenticated())
 			
 			.formLogin((formLogin) -> formLogin
@@ -40,7 +42,9 @@ public class SecurityConfig {
 			.logout((logout) -> logout 
 					.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
 					.logoutSuccessUrl("/")
-					.invalidateHttpSession(true));
+					.invalidateHttpSession(true))
+			.exceptionHandling((exceptionHandling) -> exceptionHandling
+					.authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized")));
 		return http.build();
 	}
 	
