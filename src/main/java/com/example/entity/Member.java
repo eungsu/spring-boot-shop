@@ -1,7 +1,5 @@
 package com.example.entity;
 
-import java.time.LocalDateTime;
-
 import com.example.constant.Role;
 
 import jakarta.persistence.Column;
@@ -18,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "members")
 @Getter @Setter
-public class Member {
+public class Member extends BaseTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,10 +44,4 @@ public class Member {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "member_role")
 	private Role role;
-	
-	@Column(name = "member_created_date")
-	private LocalDateTime createdDate;
-	
-	@Column(name = "member_updated_date")
-	private LocalDateTime updatedDate;
 }

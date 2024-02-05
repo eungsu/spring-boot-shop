@@ -1,7 +1,5 @@
 package com.example.entity;
 
-import java.time.LocalDateTime;
-
 import com.example.constant.ItemSellStatus;
 
 import jakarta.persistence.Column;
@@ -19,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "items")
 @Getter @Setter
-public class Item {
+public class Item extends BaseTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,10 +40,4 @@ public class Item {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "item_sell_status")
 	private ItemSellStatus itemSellStatus;
-	
-	@Column(name = "item_created_date")
-	private LocalDateTime createdDate;
-	
-	@Column(name = "item_update_date")
-	private LocalDateTime updatedDate;
 }
